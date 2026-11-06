@@ -23,7 +23,7 @@
   - Гарантувати час відповіді < 50 мс (ліміт за умовою — 2 с).
   - *Коміт:* `feat(webhook): implement idempotent helpdesk webhook receiver with concurrency protection`
 
-- [ ] **Крок 5: LLM клієнт (Rate Limiter 60 RPM + No-API-Key Mode)**
+- [x] **Крок 5: LLM клієнт (Rate Limiter 60 RPM + No-API-Key Mode)**
   - Реалізувати глобальний Rate Limiter на 60 запитів на хвилину (`src/moderation_service/services/rate_limiter.py`).
   - Реалізувати `src/moderation_service/services/llm_service.py`:
     - Формування промпту зі знайденими статтями та їх URL.

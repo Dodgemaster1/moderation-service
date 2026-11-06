@@ -19,6 +19,13 @@ class Settings(BaseSettings):
         validation_alias="DATABASE_URL",
     )
     debug: bool = False
+    llm_api_key: str = Field(default="", validation_alias="LLM_API_KEY")
+    llm_base_url: str = Field(
+        default="https://api.openai.com/v1/chat/completions",
+        validation_alias="LLM_BASE_URL",
+    )
+    llm_model: str = Field(default="gpt-4o-mini", validation_alias="LLM_MODEL")
+    llm_timeout_seconds: float = Field(default=30.0, validation_alias="LLM_TIMEOUT_SECONDS", gt=0)
 
 
 @lru_cache
