@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from moderation_service.api.webhooks import router as webhooks_router
 from moderation_service.config import settings
 from moderation_service.database import async_session_factory, close_db, init_db
 from moderation_service.services.kb_search import seed_knowledge_base
@@ -20,6 +21,7 @@ async def lifespan(_: FastAPI) -> AsyncGenerator[None]:
 
 
 app = FastAPI(title=settings.app_name, lifespan=lifespan)
+app.include_router(webhooks_router)
 
 
 @app.get("/health")

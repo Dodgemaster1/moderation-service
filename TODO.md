@@ -17,7 +17,7 @@
   - Реалізувати сервіс пошуку релевантних статей `src/moderation_service/services/kb_search.py` (пошук за ключовими словами та змістом українською/англійською мовами).
   - *Коміт:* `feat(kb): add fictional product knowledge base and relevant article search service`
 
-- [ ] **Крок 4: Прийом вебхуків та ідемпотентність**
+- [x] **Крок 4: Прийом вебхуків та ідемпотентність**
   - Реалізувати `POST /webhooks/helpdesk` у `src/moderation_service/api/webhooks.py` та схеми у `src/moderation_service/schemas.py`.
   - Додати атомарну обробку дублікатів через `INSERT ... ON CONFLICT DO NOTHING` (по `event_id` та `ticket_id`).
   - Гарантувати час відповіді < 50 мс (ліміт за умовою — 2 с).
