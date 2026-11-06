@@ -4,7 +4,7 @@
   - Створити структуру проєкту (`src/moderation_service`), `.gitignore`, `.env.example`, зберегти `SPEC.md`, `AGENTS.md`, `TODO.md`.
   - *Коміт:* `docs: add system specification, agent rules, and implementation checklist`
 
-- [ ] **Крок 2: Інфраструктура та База даних**
+- [x] **Крок 2: Інфраструктура та База даних**
   - Написати `docker-compose.yml` (FastAPI + PostgreSQL 18).
   - Налаштувати `src/moderation_service/config.py` (Pydantic Settings) та `src/moderation_service/database.py` (Async SQLAlchemy).
   - Створити моделі `Ticket`, `WebhookEvent`, `KBArticle`, `MockHelpdeskReply` у `src/moderation_service/models.py`.
