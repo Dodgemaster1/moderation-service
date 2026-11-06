@@ -43,7 +43,7 @@
   - Додати кнопки Approve (з можливістю редагування), Reject та панель симуляції вебхуків (Single, Duplicate Race Condition, Burst Load).
   - *Коміт:* `feat(ui): build operator moderation interface and simulation dashboard`
 
-- [ ] **Крок 8: Тести, перевірка навантаження та Документація**
+- [x] **Крок 8: Тести, перевірка навантаження та Документація**
   - Написати автотести (`tests/test_service.py`): дедуплікація одночасних вебхуків, таймаут < 2с, ретраї при 5xx, робота без API-ключа.
   - Оформити детальний `README.md` з інструкцією запуску, описом архітектури та прикладами `curl`.
   - *Коміт:* `test & docs: add integration tests and comprehensive README`
