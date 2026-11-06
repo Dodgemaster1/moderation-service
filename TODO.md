@@ -11,7 +11,7 @@
   - Реалізувати точку входу `src/moderation_service/main.py` та `GET /health` -> `200 OK`.
   - *Коміт:* `feat(core): setup FastAPI, PostgreSQL async models, healthcheck, and Docker Compose`
 
-- [ ] **Крок 3: База знань (KB) та пошуковий рушій (RAG)**
+- [x] **Крок 3: База знань (KB) та пошуковий рушій (RAG)**
   - Згенерувати `data/knowledge_base.json` (8 статей про продукт MetricFlow з URL та ключовими словами).
   - Написати сідинг (seeding) бази знань при старті застосунку.
   - Реалізувати сервіс пошуку релевантних статей `src/moderation_service/services/kb_search.py` (пошук за ключовими словами та змістом українською/англійською мовами).

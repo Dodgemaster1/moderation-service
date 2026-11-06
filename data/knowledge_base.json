@@ -1,0 +1,58 @@
+[
+  {
+    "id": "reports-pdf-export",
+    "title": "Exporting reports to PDF",
+    "url": "https://docs.metricflow.example/reports/pdf-export",
+    "content": "To export a dashboard or report as PDF, open the report, select Export, choose PDF, and confirm the page range. If the export is stuck, refresh the dashboard and check that all widgets have finished loading. Щоб експортувати звіт у PDF, відкрийте звіт, натисніть Експорт і виберіть PDF.",
+    "keywords": ["pdf", "export", "report", "dashboard", "звіт", "експорт", "друк"]
+  },
+  {
+    "id": "reports-csv-export",
+    "title": "Exporting data to CSV",
+    "url": "https://docs.metricflow.example/reports/csv-export",
+    "content": "CSV export is available from the table menu under Export data. You can export the current view or the complete filtered dataset. Large exports are prepared in the background and appear in Notifications. Експорт даних у CSV доступний у меню таблиці.",
+    "keywords": ["csv", "export", "data", "table", "download", "дані", "таблиця", "завантаження"]
+  },
+  {
+    "id": "dashboard-sharing",
+    "title": "Sharing dashboards with your team",
+    "url": "https://docs.metricflow.example/dashboards/sharing",
+    "content": "Use Share on a dashboard to invite teammates or create a read-only link. Workspace administrators can restrict public links and revoke access at any time. Щоб поділитися дашбордом, використайте кнопку Поділитися та надайте потрібні права.",
+    "keywords": ["dashboard", "share", "sharing", "permissions", "access", "дашборд", "поділитися", "доступ", "права"]
+  },
+  {
+    "id": "api-keys",
+    "title": "Creating and rotating API keys",
+    "url": "https://docs.metricflow.example/developer/api-keys",
+    "content": "Create an API key from Workspace settings, give it the minimum required scopes, and copy it only once because the secret is shown once. Rotate a key by creating a replacement, updating integrations, and revoking the old key. Створюйте ключ API в налаштуваннях робочого простору та відкликайте старий після заміни.",
+    "keywords": ["api", "key", "keys", "token", "authentication", "security", "ключ", "токен", "авторизація", "безпека"]
+  },
+  {
+    "id": "slack-integration",
+    "title": "Connecting MetricFlow to Slack",
+    "url": "https://docs.metricflow.example/integrations/slack",
+    "content": "Install the MetricFlow Slack app, select a workspace, and choose the channels that may receive dashboard alerts. You need administrator approval to install the integration. Підключіть інтеграцію Slack, оберіть робочий простір і канали для сповіщень.",
+    "keywords": ["slack", "integration", "alerts", "notifications", "workspace", "інтеграція", "сповіщення", "канал"]
+  },
+  {
+    "id": "sso-login",
+    "title": "Setting up SSO login",
+    "url": "https://docs.metricflow.example/security/sso",
+    "content": "SSO is configured by a workspace administrator using the SAML identity provider metadata URL. After enabling SSO, members sign in through the company identity provider. Keep a recovery administrator account before enforcing SSO. Налаштування SSO виконує адміністратор через SAML-провайдера ідентифікації.",
+    "keywords": ["sso", "saml", "login", "sign in", "identity", "security", "вхід", "ідентифікація", "адміністратор"]
+  },
+  {
+    "id": "billing-plans",
+    "title": "Plans, invoices, and billing",
+    "url": "https://docs.metricflow.example/account/billing",
+    "content": "Workspace owners can change the plan and payment method from Billing settings. Invoices are available as PDF downloads. A plan change takes effect immediately, while usage limits are recalculated at the next billing cycle. Власник робочого простору може змінити тариф і завантажити рахунки в налаштуваннях оплати.",
+    "keywords": ["billing", "invoice", "plan", "payment", "subscription", "тариф", "рахунок", "оплата", "підписка"]
+  },
+  {
+    "id": "data-limits",
+    "title": "Data limits and query performance",
+    "url": "https://docs.metricflow.example/limits/data",
+    "content": "MetricFlow limits rows returned by interactive queries based on the workspace plan. Narrow the date range, add filters, or schedule a background query for larger datasets. The usage page shows current limits and consumption. Обмеження даних залежать від тарифу; додайте фільтри або звузьте період для великих запитів.",
+    "keywords": ["limits", "data", "rows", "query", "performance", "filters", "обмеження", "запит", "фільтри", "продуктивність"]
+  }
+]
