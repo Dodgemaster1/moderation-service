@@ -18,3 +18,13 @@ class HelpdeskWebhookResponse(BaseModel):
 
     accepted: bool
     duplicate: bool
+
+
+class MockHelpdeskReplyRequest(BaseModel):
+    ticket_id: str = Field(min_length=1, max_length=128)
+    message: str = Field(min_length=1)
+
+
+class MockHelpdeskReplyResponse(BaseModel):
+    ticket_id: str
+    accepted: bool

@@ -31,7 +31,7 @@
     - Обробка fallback-режиму без ключа: імітація затримки 5–30 секунд і генерація змістовної статичної чернетки з посиланнями на знайдені статті.
   - *Коміт:* `feat(llm): add LLM draft generator with 60 RPM limiter and real-request fallback mode`
 
-- [ ] **Крок 6: Фонові воркери та Мок Хелпдеску (Відправка та Ретраї)**
+- [x] **Крок 6: Фонові воркери та Мок Хелпдеску (Відправка та Ретраї)**
   - Реалізувати Mock Helpdesk (`src/moderation_service/api/mock_helpdesk.py`: `POST /mock-helpdesk/tickets/{ticket_id}/replies`), який повертає `201 Created`, симулює періодичні `502`/`504`/таймаути та перевіряє `Idempotency-Key` для захисту клієнта від дублікатів.
   - Реалізувати у `src/moderation_service/services/workers.py` воркер генерації чернеток (`NEW` -> `GENERATING` -> `DRAFT_READY`) через `FOR UPDATE SKIP LOCKED`.
   - Реалізувати воркер доставки підтверджених відповідей (`APPROVED` / `DELIVERY_RETRY` -> `SENT`) з Exponential Backoff.

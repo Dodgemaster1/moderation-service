@@ -26,6 +26,12 @@ class Settings(BaseSettings):
     )
     llm_model: str = Field(default="gpt-4o-mini", validation_alias="LLM_MODEL")
     llm_timeout_seconds: float = Field(default=30.0, validation_alias="LLM_TIMEOUT_SECONDS", gt=0)
+    helpdesk_timeout_seconds: float = Field(default=5.0, validation_alias="HELPDESK_TIMEOUT_SECONDS", gt=0)
+    worker_poll_seconds: float = Field(default=1.0, validation_alias="WORKER_POLL_SECONDS", gt=0)
+    worker_concurrency: int = Field(default=20, validation_alias="WORKER_CONCURRENCY", gt=0)
+    mock_failure_rate: float = Field(default=0.2, validation_alias="MOCK_FAILURE_RATE", ge=0, le=1)
+    mock_timeout_rate: float = Field(default=0.1, validation_alias="MOCK_TIMEOUT_RATE", ge=0, le=1)
+    mock_timeout_seconds: float = Field(default=6.0, validation_alias="MOCK_TIMEOUT_SECONDS", gt=0)
 
 
 @lru_cache
