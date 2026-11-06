@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MetricFlow moderation</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 1200px; padding: 0 1rem; color: #17202a; }
+    .stats, .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0; }
+    .stat, button, select { border: 1px solid #ccd3da; border-radius: .35rem; padding: .5rem .7rem; background: #fff; }
+    .stat strong { display: block; font-size: 1.3rem; }
+    .ticket { border: 1px solid #dfe4e8; border-radius: .5rem; margin: 1rem 0; padding: 1rem; }
+    .ticket header { display: flex; justify-content: space-between; gap: 1rem; }
+    .status { font-weight: 700; }
+    textarea { box-sizing: border-box; min-height: 110px; width: 100%; margin: .5rem 0; }
+    .muted { color: #66717c; }
+    li { margin: .25rem 0; }
+  </style>
+</head>
+<body>
+  <h1>MetricFlow operator moderation</h1>
+  <section class="stats">
+    {% for item in statuses %}
+    <a class="stat" href="/?status_filter={{ item.value }}">
+      <strong>{{ counts.get(item.value, 0) }}</strong>{{ item.value }}
+    </a>
+    {% endfor %}
+    <a class="stat" href="/"><strong>All</strong>tickets</a>
+  </section>
+
+  <section class="actions">
+    <button onclick="simulate('single')">Simulate single</button>
+    <button onclick="simulate('duplicate')">Simulate duplicate race</button>
+    <button onclick="simulate('burst')">Simulate burst (10)</button>
+    <span id="simulation-result" class="muted"></span>
+  </section>
+
+  {% for ticket in tickets %}
+  <article class="ticket">
+    <header>
+      <div><strong>{{ ticket.ticket_id }}</strong> · {{ ticket.customer_email }}</div>
+      <span class="status">{{ ticket.status.value }}</span>
+    </header>
+    <p>{{ ticket.message }}</p>
+    {% if ticket.draft_reply %}
+    <label for="draft-{{ ticket.ticket_id }}">Draft reply</label>
+    <textarea id="draft-{{ ticket.ticket_id }}">{{ ticket.draft_reply }}</textarea>
+    {% endif %}
+    {% if ticket.referenced_articles %}
+    <div><strong>Knowledge-base articles</strong>
+      <ul>{% for article in ticket.referenced_articles %}<li><a href="{{ article.url }}" target="_blank" rel="noreferrer">{{ article.title }}</a></li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+    <p class="muted">
+      LLM: {{ ticket.llm_mode or "—" }} · generation: {{ "%.2f"|format(ticket.generation_time_sec or 0) }}s ·
+      retries: {{ ticket.retry_count }}{% if ticket.next_retry_at %} · next retry: {{ ticket.next_retry_at }}{% endif %}
+      {% if ticket.last_error %} · error: {{ ticket.last_error }}{% endif %}
+    </p>
+    {% if ticket.status.value == "DRAFT_READY" %}
+    <button onclick="approve('{{ ticket.ticket_id }}')">Approve</button>
+    <button onclick="rejectTicket('{{ ticket.ticket_id }}')">Reject</button>
+    {% endif %}
+  </article>
+  {% else %}
+  <p>No tickets match this filter.</p>
+  {% endfor %}
+  <script>
+    async function approve(id) {
+      const draft = document.getElementById(`draft-${id}`).value;
+      const response = await fetch(`/api/tickets/${encodeURIComponent(id)}/approve`, {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({draft_reply: draft})
+      });
+      if (!response.ok) alert((await response.json()).detail || 'Approval failed'); else location.reload();
+    }
+    async function rejectTicket(id) {
+      const response = await fetch(`/api/tickets/${encodeURIComponent(id)}/reject`, {method: 'POST'});
+      if (!response.ok) alert((await response.json()).detail || 'Rejection failed'); else location.reload();
+    }
+    async function simulate(mode) {
+      const count = mode === 'burst' ? 10 : 1;
+      const response = await fetch('/mock-helpdesk/trigger-webhook', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({mode, count})
+      });
+      const result = await response.json();
+      document.getElementById('simulation-result').textContent = response.ok ? `Created: ${result.created}` : (result.detail || 'Simulation failed');
+      if (response.ok) setTimeout(() => location.reload(), 500);
+    }
+  </script>
+</body>
+</html>

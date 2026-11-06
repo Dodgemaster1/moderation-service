@@ -37,7 +37,7 @@
   - Реалізувати воркер доставки підтверджених відповідей (`APPROVED` / `DELIVERY_RETRY` -> `SENT`) з Exponential Backoff.
   - *Коміт:* `feat(workers): implement async DB-backed workers for LLM generation and reliable reply delivery`
 
-- [ ] **Крок 7: Веб-інтерфейс оператора (Moderation UI)**
+- [x] **Крок 7: Веб-інтерфейс оператора (Moderation UI)**
   - Створити роутер оператора `src/moderation_service/api/operator.py` та шаблон `src/moderation_service/templates/index.html` (`GET /`) на Jinja2 + HTMX/JS.
   - Додати перегляд списку звернень, тексту чернетки, прикріплених статей, статусів ретраїв.
   - Додати кнопки Approve (з можливістю редагування), Reject та панель симуляції вебхуків (Single, Duplicate Race Condition, Burst Load).
